@@ -5,7 +5,7 @@ import gspread
 from gspread_dataframe import set_with_dataframe
 from oauth2client.service_account import ServiceAccountCredentials
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('/content/drive/MyDrive/Projects/GoogleSheet/emerald-cab-384306-b8566336d0b0.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name('./emerald-cab-384306-b8566336d0b0.json', scope)
 client = gspread.authorize(creds)
 gsKyari= client.open('Kyari Advertisment SP,SD&SB(July-Sep2023)')
 kyarisheet=gsKyari.worksheet('SP&SD')
