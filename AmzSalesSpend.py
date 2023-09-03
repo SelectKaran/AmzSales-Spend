@@ -23,6 +23,7 @@ kyarigrp=kyari_spend.groupby(['Date', 'Month', "ItemName ",'ASIN','Parent SKU', 
 b2csorteddf=b2c_df.loc[(b2c_df['Brand']=='KYARI')&(b2c_df['Portal']!='Shopify')&(b2c_df['Portal']!='Flipkart')].copy()
 b2cgrp=b2csorteddf.groupby(['Date','Month', 'ASIN', 'Parent SKU','Child SKU',"ItemName "])[['Units','Net_Sales','total_sales']].sum().reset_index().copy()
 b2cgrp["Date"]=pd.to_datetime(b2cgrp["Date"],format="%d/%m/%Y").dt.date
+kyarigrp["Date"]=pd.to_datetime(kyarigrp["Date"],format="%Y-%m-%d").dt.date
 kyarispendwithb2c=kyarigrp.merge(b2cgrp,left_on=['Date','Month',"ASIN","Parent SKU","Child SKU","ItemName "],right_on=['Date','Month',"ASIN","Parent SKU","Child SKU","ItemName "],how='outer').copy()
 kyarispendwithb2c.rename({"Units_x":"Ad Unit","Units_y":"Total Units","Net_Sales":"Net Sales","total_sales":"Total Sales","Child SKU_x":"Child SKU"},axis=1,inplace=True)
 b2cgrp['Net_Sales'] = b2cgrp['Net_Sales'].replace('', np.nan)
