@@ -69,7 +69,3 @@ b2cparentm=b2cparent.merge(parent_df,on=['Child SKU'],how='left').drop_duplicate
 b2cparentm["Date"]=pd.to_datetime(b2cparentm["Date"])
 b2cparentm['Week Number']="W-"+b2cparentm["Date"].dt.strftime("%U")
 b2cparentm["Date"]=b2cparentm["Date"].dt.date
-gsamz = client.open('Amz_Sales&SpendReport2023')
-sheetAmz =gsamz.worksheet('RA-ALL')
-sheetAmz.clear()
-set_with_dataframe(sheetAmz,b2cparentm)
